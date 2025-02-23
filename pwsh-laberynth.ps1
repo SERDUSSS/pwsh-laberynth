@@ -19,7 +19,7 @@ $global:debugActive = $false
 $global:mapActive = $false
 
 function Main-Menu {
-        while ($done -ne $true) {
+    while ($done -ne $true) {
         Clear-Host
         Write-Host "Controls:"
         Write-Host "`tW`tWalk"
