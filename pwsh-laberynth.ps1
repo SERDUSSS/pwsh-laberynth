@@ -6,6 +6,10 @@ $global:shading = @(
     ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ":", ":", ":", ":", "*", "*", "*", "*", "o", "$", "#"#, "▓", "█", "▒", "░"
 )
 
+$exitChar = "`e"
+
+$global:map2 = ""
+
 $global:sleepTime = 0
 $Red    = "`e[31m"  # Red color
 $Green  = "`e[32m"  # Green color
@@ -187,10 +191,10 @@ function Generate-Maze {
         $rowChars[$exitX] = "E"
         $maze[$exitY] = -join $rowChars
 
+        $global:map2 = $maze
+
         return $maze -replace 'E', "$red`E$reset"
     }
-
-    $maze = Place-Exit
 
     # **Remove 1 in 6 walls randomly (excluding outer walls)**
     Write-Host "Removing wall randomly"
@@ -201,6 +205,8 @@ function Generate-Maze {
             }
         }
     }
+
+    $maze = Place-Exit
 
     return $maze
 }
@@ -422,7 +428,11 @@ function Render-Frame {
     if ($global:mapActive -eq $true) {
         # Display map with player position and direction
         for ($y = 0; $y -lt $global:map.Length; $y++) {
-            $row = $global:map[$y]
+            if ($colorActive) {
+                $row = $global:map[$y]
+            } else {
+                $row = $global:map2[$y]
+            }
 
             # Mark the player's position with the arrow depending on direction
             $mapRow = ""
@@ -505,7 +515,7 @@ while ($true) {
     # Check if the player reached the exit
     $floorX = [math]::Floor($global:playerX)
     $floorY = [math]::Floor($global:playerY)
-    if ($global:map[$floorY][$floorX] -eq "`e") {
+    if ($global:map[$floorY][$floorX] -eq $exitChar) {
         Clear-Host
         $stopwatch.Stop()
         $timeTaken = [math]::Round($stopwatch.Elapsed.TotalSeconds, 2)
@@ -539,7 +549,7 @@ while ($true) {
                 $Yellow = ""
                 $Blue   = ""
                 $Reset  = ""
-            }
+	        }
         }
     }
 
