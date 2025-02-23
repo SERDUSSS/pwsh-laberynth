@@ -6,11 +6,11 @@ $global:shading = @(
     ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ":", ":", ":", ":", "*", "*", "*", "*", "o", "$", "#"#, "▓", "█", "▒", "░"
 )
 $global:sleepTime = 0
-$red    = "`e[31m"  # Red color
-$green  = "`e[32m"  # Green color
-$yellow = "`e[33m"  # Yellow color
-$blue   = "`e[34m"  # Blue color
-$reset  = "`e[0m"   # Reset color
+$Red    = "`e[31m"  # Red color
+$Green  = "`e[32m"  # Green color
+$Yellow = "`e[33m"  # Yellow color
+$Blue   = "`e[34m"  # Blue color
+$Reset  = "`e[0m"   # Reset color
 
 # Color mode
 $global:colorActive = $true
