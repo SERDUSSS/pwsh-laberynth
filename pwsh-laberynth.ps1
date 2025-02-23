@@ -5,6 +5,7 @@ $global:maxDepth = 64  # Max raycasting depth
 $global:shading = @(
     ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ":", ":", ":", ":", "*", "*", "*", "*", "o", "$", "#"#, "▓", "█", "▒", "░"
 )
+
 $global:sleepTime = 0
 $Red    = "`e[31m"  # Red color
 $Green  = "`e[32m"  # Green color
@@ -265,8 +266,6 @@ function Find-InitialAngle {
 # Set the player's initial angle
 $global:playerAngle = Find-InitialAngle
 
-#$global:playerAngle = 0  # Facing right initially
-
 # Function to get terminal size
 function Get-TerminalSize {
     $terminalHeight = $Host.UI.RawUI.WindowSize.Height
@@ -497,6 +496,7 @@ Write-Host "$Green[+] Started timer$Reset"
 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
 Write-Host "$Green[+] Game ready$Reset"
+
 # Game loop
 while ($true) {
     # Render the current frame
@@ -545,4 +545,3 @@ while ($true) {
 
     Start-Sleep -Milliseconds $global:sleepTime
 }
-
