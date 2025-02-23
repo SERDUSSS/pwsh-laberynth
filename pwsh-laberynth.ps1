@@ -520,6 +520,7 @@ while ($true) {
         $stopwatch.Stop()
         $timeTaken = [math]::Round($stopwatch.Elapsed.TotalSeconds, 2)
         Write-Host "`n🎉 You Won! Time: $timeTaken seconds 🎉" -ForegroundColor Green
+        Pause
         break
     }
 
