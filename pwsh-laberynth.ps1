@@ -12,6 +12,9 @@ $yellow = "`e[33m"  # Yellow color
 $blue   = "`e[34m"  # Blue color
 $reset  = "`e[0m"   # Reset color
 
+# Color mode
+$global:colorActive = $true
+
 # Debug mode
 $global:debugActive = $false
 
@@ -28,6 +31,7 @@ function Main-Menu {
         Write-Host "`tD`tRotate Right"
         Write-Host "`tB`tOpen Debug"
         Write-Host "`tM`tOpen Map"
+        Write-Host "`tC`tColor mode (on/off)"
         Write-Host
         Write-Host "Select map dimensions:"
         Write-Host "`t1.`t8x8       (Sandbox)"
@@ -519,7 +523,23 @@ while ($true) {
         '[Qq]' {
             Clear-Host
             Write-Host "`n$Green[+] Leaving game...$Reset"
-            break
+            exit
+        }
+        '[Cc]' {
+            $global:colorActive = -not $global:colorActive
+            if ($global:colorActive) {
+                $Red    = "`e[31m"
+                $Green  = "`e[32m"
+                $Yellow = '`e[33m'
+                $Blue   = "`e[34m"
+                $Reset  = "`e[0m"
+            } elseif (-not $global:colorActive) {
+                $Red    = ""
+                $Green  = ""
+                $Yellow = ""
+                $Blue   = ""
+                $Reset  = ""
+            }
         }
     }
 
